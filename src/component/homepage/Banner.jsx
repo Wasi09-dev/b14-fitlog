@@ -4,7 +4,7 @@ import bannerImg from '@/assets/banner.png'
 const Banner = () => {
     return (
         <>
-          <div className="rounded-2xl border border-white/10 bg-[#16171b] p-8 md:p-12">
+          <div className="rounded-2xl border border-white/10 bg-[#16171b] p-8 md:p-12 mt-[100px] ml-4 mr-4">
             <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
                 
                 <div>

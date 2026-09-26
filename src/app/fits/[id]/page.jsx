@@ -6,8 +6,11 @@ import SaveForLaterButton from '@/component/homepage/SaveForLaterButton';
 
 const getfit = async()=> {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
- const data = await res.json()
-return data;
+ if (!res.ok) {
+        throw new Error(`API failed with status ${res.status}`);
+    }
+    const data = await res.json();
+    return data;
 };
 const FitDetailsPage = async ({params}) => {
    const {id} = await params;

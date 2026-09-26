@@ -1,5 +1,5 @@
 import Banner from '@/component/homepage/Banner';
-import Library from '@/component/homepage/Library';
+import Library from '@/component/homepage/workout';
 import React from 'react';
 
 const page = () => {

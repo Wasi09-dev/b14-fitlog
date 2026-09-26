@@ -1,7 +1,15 @@
+'use client';
+import { useContext } from 'react';
+import { usePathname } from 'next/navigation';
+import { EllipsisVertical } from 'lucide-react';
+import { PlanContext } from '@/context/PlanContext';
+import logo from '@/assets/logo.png';
+import Link from 'next/link';
 import Image from 'next/image';
-import React from 'react';
-import logo from "@/assets/logo.png";
 const Navbar = () => {
+    const pathname = usePathname();
+    const { plan, saved } = useContext(PlanContext);
+
     return (
         <nav className='bg-base-100 shadow-sm'>
         <div className="navbar container mx-auto">
@@ -29,25 +37,37 @@ const Navbar = () => {
    FITLOG
     </div>
   </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2 bg-base-100 w-40 z-1">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
-    </ul>
-  </div>
-  <div className="navbar-end">
-    <a className="btn">Plan</a>
-    <a className="btn">Saved</a>
-  </div>
+<div className="navbar-center hidden gap-2 lg:flex">
+    <Link
+        href="/"
+        className={`rounded-full px-4 py-1.5 text-xs font-bold uppercase transition ${
+            pathname === '/' ? 'bg-lime-400 text-black' : 'text-gray-400 hover:text-white'
+        }`}
+    >
+        Workouts
+    </Link>
+    <Link
+        href="/my-plan"
+        className={`rounded-full px-4 py-1.5 text-xs font-bold uppercase transition ${
+            pathname === '/my-plan' ? 'bg-lime-400 text-black' : 'text-gray-400 hover:text-white'
+        }`}
+    >
+        My Plan
+    </Link>
+</div>
+  <div className="navbar-end flex items-center gap-5 text-xs text-gray-400">
+    <span className="flex items-center gap-1.5">
+        Plan
+        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-lime-400 text-[10px] font-bold text-black">
+            {plan.length}
+        </span>
+    </span>
+    <span className="flex items-center gap-1.5">
+        Saved
+        <span className="text-white">{saved.length}</span>
+    </span>
+    <EllipsisVertical size={18} />
+</div>
 </div>
 </nav>
     );

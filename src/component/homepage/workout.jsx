@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Clock, Flame, Star } from 'lucide-react';
+import Link from 'next/link';
 const getfit = async()=> {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
  const data = await res.json()
@@ -8,7 +9,7 @@ return data;
 }
 
 
-const Library = async () => {
+const workout = async () => {
 const fitData = await getfit();
 console.log(fitData,"fitdata")
     return (
@@ -22,7 +23,8 @@ console.log(fitData,"fitdata")
 
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {fitData.map((fit) => (
-                    <div
+                    <Link
+                        href={`/fits/${fit.id}`}
                         key={fit.id}
                         className="overflow-hidden rounded-2xl border border-white/10 bg-[#16171b]"
                     >
@@ -69,7 +71,7 @@ console.log(fitData,"fitdata")
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
@@ -77,4 +79,4 @@ console.log(fitData,"fitdata")
     );
 };
 
-export default Library;
+export default workout;

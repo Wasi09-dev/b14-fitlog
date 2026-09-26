@@ -2,7 +2,7 @@ import { Bookmark, Send } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import AddToPlanButton from '@/component/homepage/AddToPlanButton';
-
+import SaveForLaterButton from '@/component/homepage/SaveForLaterButton';
 
 const getfit = async()=> {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
@@ -88,15 +88,15 @@ const FitDetailsPage = async ({params}) => {
                     </ol>
                 </div>
 
-                {/* Buttons */}
-              <div className="mt-6 flex gap-3">
+                
+            
+    <div className="mt-6 flex gap-3">
     <AddToPlanButton id={fit.id} />
-    <button className="flex items-center gap-2 rounded-md border border-white/20 px-5 py-3 text-xs font-bold uppercase text-white transition hover:bg-white/5">
-        <Bookmark size={14} /> Save for later
-    </button>
+    <SaveForLaterButton id={fit.id} />
+</div>
 </div>
             </div>
-        </div>
+        
     );
 };
 

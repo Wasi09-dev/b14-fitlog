@@ -16,6 +16,10 @@ const MyPlanPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
+           cache: 'no-store'
+            if (!res.ok) {
+                throw new Error(`API failed with status ${res.status}`);
+            }
             const data = await res.json();
             setAllFits(data);
         };

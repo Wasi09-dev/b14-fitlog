@@ -2,9 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import { Clock, Flame, Star } from 'lucide-react';
 import Link from 'next/link';
+export const dynamic = 'force-dynamic';
 const getfit = async()=> {
-    const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
- const data = await res.json()
+    const res = await fetch('https://api.abcz.workers.dev/api/fitlog', { cache: 'no-store' });
+    if (!res.ok) {
+        throw new Error(`API failed with status ${res.status}`);
+    }
+    const data = await res.json();
 return data;
 }
 

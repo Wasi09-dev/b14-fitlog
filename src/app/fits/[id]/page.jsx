@@ -3,10 +3,10 @@ import Image from 'next/image';
 import React from 'react';
 import AddToPlanButton from '@/component/homepage/AddToPlanButton';
 import SaveForLaterButton from '@/component/homepage/SaveForLaterButton';
-
+export const dynamic = 'force-dynamic';
 const getfit = async()=> {
-    const res = await fetch('https://api.abcz.workers.dev/api/fitlog')
- if (!res.ok) {
+    const res = await fetch('https://api.abcz.workers.dev/api/fitlog', { cache: 'no-store' });
+    if (!res.ok) {
         throw new Error(`API failed with status ${res.status}`);
     }
     const data = await res.json();
@@ -43,7 +43,7 @@ const FitDetailsPage = async ({params}) => {
                 <p className="mt-2 text-sm text-gray-400">{fit.description}</p>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                    {fit.muscleGroups.map((muscle) => (
+                    {fit.muscleGroups?.map((muscle) => (
                         <span
                             key={muscle}
                             className="rounded-full bg-lime-400 px-2 py-0.5 text-[10px] font-bold uppercase text-black"

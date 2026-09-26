@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from 'react';
 import { PlanContext } from '@/context/PlanContext';
 import Image from 'next/image';
 import { Clock, Flame, Star } from 'lucide-react';
+import Link from 'next/link';
 
 const MyPlanPage = () => {
     const { plan, saved } = useContext(PlanContext);
@@ -86,12 +87,12 @@ const MyPlanPage = () => {
                         <p className="max-w-xs text-xs text-gray-400">
                             Browse the library and add a lift to get today moving.
                         </p>
-                        
+                        <Link
                             href="/"
                             className="rounded-md bg-lime-400 px-5 py-2.5 text-xs font-bold uppercase text-black transition hover:bg-lime-300"
                         >
                             Go to workouts
-                        </a>
+                        </Link>
                     </div>
                 ) : (
                     <div className="divide-y divide-white/10">
